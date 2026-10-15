@@ -43,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Local, environment specific build config (never commit - contains the
+# Reown project id injected through --dart-define-from-file).
+config/*.local.json
