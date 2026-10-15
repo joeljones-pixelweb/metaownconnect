@@ -4,7 +4,7 @@
 
 ## 1. What was built
 
-MetaMask wallet connectivity was added to a Flutter app that previously contained only the default counter demo screen (`lib/features/home/home_page.dart`, preserved as the Home tab). The app now connects to MetaMask Mobile (and any other WalletConnect-compatible wallet) through **Reown AppKit** (WalletConnect v2) via `lib/features/wallet/services/wallet_connection_service.dart`, tracks connection and balance lifecycles with Riverpod, and displays the connected EVM address, network, chain ID and native-token balance on a new Wallet page (`lib/features/wallet/views/wallet_page.dart`) reached from a new bottom-nav shell (`lib/features/wallet/views/home_shell.dart`). Balances are read over HTTPS JSON-RPC `eth_getBalance`; the connection is real — no address is ever hardcoded or simulated.
+MetaMask wallet connectivity was added to a Flutter app that previously contained only the default counter demo screen (that demo has since been removed; `lib/features/home/home_page.dart` is now a plain landing tab). The app now connects to MetaMask Mobile (and any other WalletConnect-compatible wallet) through **Reown AppKit** (WalletConnect v2) via `lib/features/wallet/services/wallet_connection_service.dart`, tracks connection and balance lifecycles with Riverpod, and displays the connected EVM address, network, chain ID and native-token balance on a new Wallet page (`lib/features/wallet/views/wallet_page.dart`) reached from a new bottom-nav shell (`lib/features/wallet/views/home_shell.dart`). Balances are read over HTTPS JSON-RPC `eth_getBalance`; the connection is real — no address is ever hardcoded or simulated.
 
 ## 2. Tech stack
 

@@ -15,7 +15,7 @@
 
 - Inspected the repository: a stock Flutter counter app on branch `stage/v1` (single initial commit).
 - No wallet page, no state-management package, no networking, no DI, no deep-link configuration anywhere.
-- `lib/main.dart` was the default `MyApp` counter app; the counter logic now preserved verbatim inside `HomePage` (`lib/features/home/home_page.dart`).
+- `lib/main.dart` was the default `MyApp` counter app; its counter logic was initially moved into `HomePage` (`lib/features/home/home_page.dart`) and has since been removed — `HomePage` is now a plain `StatelessWidget` landing tab with no counter.
 - `pubspec.yaml` carried only `cupertino_icons`; Dart SDK constraint `^3.9.2`; toolchain confirmed Flutter **3.35.7** (stable, rev `adc9010625`).
 - `test/widget_test.dart` was the stock counter smoke test (removed later — see Phase 9).
 - Android/iOS configs reviewed (`AndroidManifest.xml`, `build.gradle.kts`, `Info.plist`); no `ios/Podfile` existed yet; no URL schemes or intent filters present.
@@ -78,7 +78,7 @@ Created under `lib/features/wallet/viewmodels/`:
 
 - `lib/features/wallet/views/wallet_page.dart` — `WalletPage` (ConsumerStatefulWidget): `initState` initializes the ViewModel; renders status chip, notice/error banners, initializing card, disconnected section (explanation + `ConnectMetaMaskButton` + "Browse all wallets" + awaiting-approval hint) or connected section (account card, balance card, disconnect button); copy-to-clipboard with SnackBar.
 - `lib/features/wallet/views/widgets/` — `connect_metamask_button.dart` (busy/enabled FilledButton), `connected_wallet_card.dart` (short address, copy, network, chain ID, wallet name), `wallet_balance_card.dart` (formatted balance, refresh, cached/live caption, failure + retry, unsupported-network notice), `wallet_connection_status.dart` (coloured status pill with semantics live region), `wallet_messages.dart` (`NoticeBanner`, `ErrorBanner`), `meta_mask_mark.dart` (orange "M" placeholder mark — not the official MetaMask asset).
-- `lib/features/wallet/views/home_shell.dart` — `HomeShell` with `IndexedStack` [HomePage, WalletPage] and a Material 3 `NavigationBar` (Home / Wallet); preserves the original counter demo as the Home tab.
+- `lib/features/wallet/views/home_shell.dart` — `HomeShell` with `IndexedStack` [HomePage, WalletPage] and a Material 3 `NavigationBar` (Home / Wallet).
 - `lib/main.dart` — rewritten: `WidgetsFlutterBinding.ensureInitialized()`, `runApp(ProviderScope(child: MetaOwnConnectApp()))`, `MetaOwnConnectApp` (ConsumerWidget) with Material 3 theme (seed `0xFF4F46E5`), title from `appConfigProvider`.
 
 ## Phase 8 — Native Android and iOS configuration
@@ -163,7 +163,7 @@ Commands actually run by the lead agent in the repo, Flutter 3.35.7:
 | `lib/features/wallet/views/widgets/wallet_connection_status.dart` | Colour-coded wallet status pill (semantics live region). |
 | `lib/features/wallet/views/widgets/wallet_messages.dart` | `NoticeBanner` and `ErrorBanner` (retry + dismiss). |
 | `lib/features/wallet/views/widgets/meta_mask_mark.dart` | Orange "M" placeholder brand mark (not the official MetaMask logo). |
-| `lib/features/home/home_page.dart` | Original counter demo preserved as the Home tab (moved from the template `main.dart`). |
+| `lib/features/home/home_page.dart` | Moved out of the template `main.dart`; the counter demo was removed and the file is now a plain landing tab (icon + copy pointing at the Wallet tab). |
 | `ios/Podfile` | New Podfile with `platform :ios, '13.0'` (AppKit minimum). |
 | `ARCHITECTURE_AND_FLOW.md` | Developer-facing architecture document. |
 | `IMPLEMENTATION_LOG.md` | This document. |
